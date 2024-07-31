@@ -18,15 +18,14 @@ export default async function NavBarComp() {
                     session?.user ? 
                     <>
                         <div className="hidden sm:flex gap-2 items-center">
+                            <DropdownMobile image={session.user.image} />
                             <p className="text-gray-600 drop-shadow-lg"> Welcome back 
                                 <span className="font-semibold text-black"> {session.user.name}</span>!
                             </p>
-                            <form action={actions.signOut}>
-                                <button className="bg-white border-2 border-black p-1 rounded-md" type='submit'>Sign out</button>
-                            </form>
                         </div>
-                        <div className="flex sm:hidden items-center">
+                        <div className="flex sm:hidden gap-2 items-center">
                             <DropdownMobile image={session.user.image} />
+                            <p className="font-semibold text-black"> {session.user.name}</p>
                         </div>
                     </>
                     : 
