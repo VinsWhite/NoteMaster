@@ -3,7 +3,6 @@ import React from "react";
 import { IoHomeOutline } from "react-icons/io5";
 import SearchComp from "./search-comp";
 import NotificationComp from "./notification-comp";
-import * as actions from '@/actions'
 import { auth } from '@/auth'
 import DropdownMobile from './dropdownMB-comp'
 
@@ -11,7 +10,7 @@ export default async function NavBarComp() {
     const session = await auth();
 
     return (
-        <div className="flex justify-between py-2 px-4 items-center">
+        <div className="flex justify-between py-2 px-4 items-center bg-primary">
             <div className="flex items-center gap-2">
                 <Link href='/'><IoHomeOutline className="text-2xl" /></Link>
                 {
@@ -29,9 +28,7 @@ export default async function NavBarComp() {
                         </div>
                     </>
                     : 
-                    <form action={actions.signIn}>
-                        <button className="bg-white border-2 border-black p-1 rounded-md" type='submit'>Sign in</button>
-                    </form>
+                    <Link href="/login" className="bg-white border-2 border-black p-1 rounded-md" type='submit'>Sign in</Link>
                 }
             </div>
             <div className="flex gap-2">
