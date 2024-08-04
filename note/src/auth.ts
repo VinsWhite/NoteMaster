@@ -22,6 +22,14 @@ export const { handlers: {GET, POST}, auth, signOut, signIn } = NextAuth({
         async session({ session, user }: any) {
             if(session && user) {
                 session.user.id = user.id;
+
+                /* db.user.create ({
+                    data: {
+                        name: session.user.name,
+                        email: session.user.email,
+                        id: user.id,
+                    }
+                }) */
             }
 
             return session;
