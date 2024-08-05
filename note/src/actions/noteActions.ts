@@ -29,3 +29,21 @@ export async function createNote({ title, description, tag }: { title: string; d
         }
     }
 }
+
+export async function getNotes() {
+    const notes = await db.note.findMany({
+        where: {
+            deletedAt: null, // Optional: exclude deleted notes
+        },
+        orderBy: {
+            createdAt: 'desc', // Order by creation date
+        },
+    });
+
+    return notes.map(note => ({
+        ...note,
+        createdAt: note.createdAt.toISOString(),
+        updatedAt: note.updatedAt.toISOString(),
+        deletedAt: note.deletedAt ? note.deletedAt.toISOString() : null,
+    }));
+}
