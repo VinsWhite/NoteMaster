@@ -47,3 +47,23 @@ export async function getNotes() {
         deletedAt: note.deletedAt ? note.deletedAt.toISOString() : null,
     }));
 }
+
+export async function getDeletedNotes() {
+    const notes = await db.note.findMany({
+        where: {
+            deletedAt: {
+                not: null, 
+            },
+        },
+        orderBy: {
+            createdAt: 'desc', 
+        },
+    });
+
+    return notes.map(note => ({
+        ...note,
+        createdAt: note.createdAt.toISOString(),
+        updatedAt: note.updatedAt.toISOString(),
+        deletedAt: note.deletedAt ? note.deletedAt.toISOString() : null,
+    }));
+}

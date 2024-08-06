@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
-import { createNote } from '@/actions/noteActions'; // Adjust the import path based on your project structure
+import { createNote } from '@/actions/noteActions'; 
 
 export default function HeaderRecentNotes() {
     const [modal, setModal] = useState<boolean>(false);
